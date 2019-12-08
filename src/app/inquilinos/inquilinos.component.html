@@ -13,6 +13,7 @@
               <th>apellido</th>
               <th>email</th>
               <th>fecha creación</th>
+              <th>editar</th>
             </tr>
       </thead>
       <tbody>
@@ -22,6 +23,9 @@
               <th>{{i.apellido}}</th>
               <th>{{i.email}}</th>
               <th>{{i.createAt}}</th>
+              <td>
+                <button type="button" name="editar" [routerLink]="['/inquilinos/form', i.id]" class="btn btn-primary btn-sm">editar</button>
+              </td>
             </tr>
       </tbody>
     </table>

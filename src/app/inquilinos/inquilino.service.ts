@@ -11,6 +11,7 @@ export class InquilinoService {
 
   private urlEndPointListar : string = "http://localhost:8080/inquilino/listarInquilinos";
   private urlEndPointCrear : string = "http://localhost:8080/inquilino/form";
+  private urlEndPointVer : string = "http://localhost:8080/inquilino/verInquilino";
   
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
@@ -23,5 +24,10 @@ export class InquilinoService {
 
   crearInquilino(inquilino : Inquilino): Observable<Inquilino>{
     return this.http.post<Inquilino>(this.urlEndPointCrear, inquilino, {headers : this.httpHeaders});
+  }
+
+  getInquilino(id): Observable<Inquilino>{
+    
+    return this.http.get<Inquilino>(`${this.urlEndPointVer}/${id}`);
   }
 }

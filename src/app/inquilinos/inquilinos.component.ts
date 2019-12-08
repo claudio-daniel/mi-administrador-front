@@ -16,7 +16,7 @@ export class InquilinosComponent implements OnInit {
 
   ngOnInit() {
    this.inquilinoService.getInquilinos().subscribe(
-     clientes =>  this.inquilinos = clientes
+     inquilinos =>  this.inquilinos = inquilinos
    );
   }
 

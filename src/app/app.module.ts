@@ -15,7 +15,8 @@ import { FormComponent } from './inquilinos/form/form.component';
 const routes : Routes = [
   {path: '', redirectTo:'/inquilinos', pathMatch:'full'},
   {path: 'inquilinos', component : InquilinosComponent},
-  {path: 'inquilinos/form', component : FormComponent}
+  {path: 'inquilinos/form', component : FormComponent},
+  {path: 'inquilinos/form/:id', component : FormComponent}
 ]
 
 @NgModule({

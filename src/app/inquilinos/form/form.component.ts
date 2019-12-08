@@ -1,7 +1,7 @@
 import { InquilinoService } from './../inquilino.service';
 import { Inquilino } from './../inquilino';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
 @Component({
@@ -14,11 +14,21 @@ export class FormComponent implements OnInit {
   private inquilino : Inquilino = new Inquilino();
   private titulo : string = "Crear Inquilino";
 
-  constructor(private inquilinoService : InquilinoService, private route : Router) { }
+  constructor(private inquilinoService : InquilinoService, private route : Router, private activateRoute : ActivatedRoute) { }
 
   ngOnInit() {
+    this.cargarInquilino();
   }
 
+  public cargarInquilino() : void{
+    this.activateRoute.params.subscribe( params => {
+      let id = params[`id`];
+      if(id){
+        this.inquilinoService.getInquilino(id).subscribe ( (inquilino) => this.inquilino = inquilino)
+      }
+    })
+
+  }
   public crear() : void {
     this.inquilinoService.crearInquilino(this.inquilino).subscribe(
       inquilino => {

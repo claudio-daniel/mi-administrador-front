@@ -13,7 +13,7 @@ export class FormComponent implements OnInit {
 
   private inquilino : Inquilino = new Inquilino();
   private titulo : string = "Crear Inquilino";
-
+  private errores : string[] = [];
   constructor(private inquilinoService : InquilinoService, private route : Router, private activateRoute : ActivatedRoute) { }
 
   ngOnInit() {
@@ -35,7 +35,27 @@ export class FormComponent implements OnInit {
 
         this.route.navigate(['/inquilinos']);
         swal.fire('Inquilino Registrado', `inquilino ${inquilino.nombre} creado con éxito`, 'success')
+      },
+      err =>{
+        this.errores = err.error.errors as string[];
+        console.error('Codigo de error : ' + err.status);
+        console.error(err.error.errors);
       }
     );
+  }
+
+  public actualizar() : void {
+    this.inquilinoService.actualizarInquilino(this.inquilino).subscribe(
+      inquilino => {
+        this.route.navigate(['/inquilinos']);
+        swal.fire('Inquilino Actualizado', `inquilino ${inquilino.nombre} actualizado con exito`, 'success')
+      },
+      err =>{
+        this.errores = err.error.errors as string[];
+        console.error('Codigo de error : ' + err.status);
+        console.error(err.error.errors);
+      }
+
+    )
   }
 }

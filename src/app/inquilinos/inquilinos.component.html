@@ -5,7 +5,12 @@
     <div class="my-2 text-left">
       <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/inquilinos/form']">Registrar Inquilino</button>
     </div>
-    <table class=" thead-black table table-bordered table-striped ">
+    
+    <div class="alert alert-info" *ngIf="inquilinos?.length==0">
+      No hay inquilinos registrados 
+    </div>
+    
+    <table class=" thead-black table table-bordered table-striped" *ngIf="inquilinos?.length>0">
       <thead>
           <tr>
               <th>id</th>
@@ -14,6 +19,7 @@
               <th>email</th>
               <th>fecha creación</th>
               <th>editar</th>
+              <th>eliminar</th>
             </tr>
       </thead>
       <tbody>
@@ -22,9 +28,12 @@
               <th>{{i.nombre}}</th>
               <th>{{i.apellido}}</th>
               <th>{{i.email}}</th>
-              <th>{{i.createAt}}</th>
+              <th>{{i.createAt | date:'EEEE dd, MMMM yyyy'}} </th>
               <td>
                 <button type="button" name="editar" [routerLink]="['/inquilinos/form', i.id]" class="btn btn-primary btn-sm">editar</button>
+              </td>
+              <td>
+                <button type="button" name="eliminar" (click)='eliminar(i)' class="btn btn-danger btn-sm">eliminar</button>
               </td>
             </tr>
       </tbody>

@@ -38,7 +38,7 @@ export class InquilinoService {
     );
   }
 
-  crearInquilino(inquilino : Inquilino): Observable<Inquilino>{
+  crearInquilino(inquilino : Inquilino): Observable<any>{
     return this.http.post<Inquilino>(this.urlEndPointCrear, inquilino, {headers : this.httpHeaders}).pipe(
       catchError(e =>{
         if(e.status == 400){
@@ -63,7 +63,7 @@ export class InquilinoService {
     );
   }
 
-  actualizarInquilino(inquilino : Inquilino): Observable<Inquilino>{
+  actualizarInquilino(inquilino : Inquilino): Observable<any>{
     
     return this.http.put<Inquilino>(`${this.urlEndPointCrear}/${inquilino.id}`, inquilino , {headers : this.httpHeaders}).pipe(
       catchError(e =>{
@@ -77,7 +77,7 @@ export class InquilinoService {
     );
   }
 
-  eliminarCliente(id : number): Observable<Inquilino>{
+  eliminarCliente(id : number): Observable<any>{
     return this.http.delete<Inquilino>(`${this.urlEndPointEliminar}/${id}` , {headers : this.httpHeaders}).pipe(
       catchError(e =>{
         console.error(e.error.mensaje);

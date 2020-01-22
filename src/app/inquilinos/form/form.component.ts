@@ -31,10 +31,10 @@ export class FormComponent implements OnInit {
   }
   public crear() : void {
     this.inquilinoService.crearInquilino(this.inquilino).subscribe(
-      inquilino => {
+      json => {
 
         this.route.navigate(['/inquilinos']);
-        swal.fire('Inquilino Registrado', `inquilino ${inquilino.nombre} creado con éxito`, 'success')
+        swal.fire('Inquilino Registrado', `inquilino ${json.inquilino.nombre} creado con éxito`, 'success')
       },
       err =>{
         this.errores = err.error.errors as string[];
@@ -46,9 +46,9 @@ export class FormComponent implements OnInit {
 
   public actualizar() : void {
     this.inquilinoService.actualizarInquilino(this.inquilino).subscribe(
-      inquilino => {
+      json=> {
         this.route.navigate(['/inquilinos']);
-        swal.fire('Inquilino Actualizado', `inquilino ${inquilino.nombre} actualizado con exito`, 'success')
+        swal.fire('Inquilino Actualizado', `inquilino ${json.inquilino.nombre} actualizado con exito`, 'success')
       },
       err =>{
         this.errores = err.error.errors as string[];

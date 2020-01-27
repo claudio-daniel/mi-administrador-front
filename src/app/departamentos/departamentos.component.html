@@ -1,0 +1,34 @@
+<h1 class="animated fadeIn fast">Departamentos <small>registrados</small></h1>
+<hr>
+
+<div class="card text-white border-danger mb-3 animated fadeIn"  *ngIf="departamentos.length==0">
+    <div class="card-header">No hay departamentos registrados </div>
+    <div class="card-body text-danger">
+      <h5 class="card-title">Todavía no has registrado nuevos departamentos.</h5>
+      <p class="card-text">Seleccione registar o volver al inicio.</p>
+      <div class="card-body ">
+        <button type="button" class="btn btn-outline-primary" style="margin-right: 25px ;">Registrar..</button>
+        <button type="button" routerLink="/" class="btn btn-outline-danger ">Ir al inicio</button>
+      </div>
+    </div>
+</div>
+
+<div class="card-columns animated fadeIn">
+    <div class="card border-info" style="width: 18rem;" *ngFor="let departamento of departamentos; let id=index" >
+        <div class="card-header text-white bg-info mb-3">{{ departamento.nombre }}</div>
+        <img *ngIf="imagen" src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ departamento.nombre }}</h5>
+            <p class="card-text">{{ departamento.estado }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Inquilino : {{ departamento.inquilino }}</li>
+            <li class="list-group-item">Propietario : {{ departamento.propietario }}</li>
+            <li class="list-group-item">Cantidad de Habitaciones : {{ departamento.cantidadHabitaciones }}</li>
+        </ul>
+        <div class="card-body">
+            <button type="button" class="btn btn-outline-primary btn-block" (click)="verMas(id)">Ver mas..</button>
+            <button type="button" class="btn btn-outline-danger btn-block">Eliminar</button>
+        </div>
+    </div>
+</div>

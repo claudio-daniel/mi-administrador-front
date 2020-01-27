@@ -14,10 +14,10 @@ import { InquilinosComponent } from './inquilinos.component.js';
 })
 export class InquilinoService {
 
-  private urlEndPointListar : string = "http://localhost:8080/inquilino/listarInquilinos";
-  private urlEndPointCrear : string = "http://localhost:8080/inquilino/form";
-  private urlEndPointVer : string = "http://localhost:8080/inquilino/verInquilino";
-  private urlEndPointEliminar : string = "http://localhost:8080/inquilino/eliminar";
+  private urlEndPointListar : string = "http://localhost:8081/inquilino/listarInquilinos";
+  private urlEndPointCrear : string = "http://localhost:8081/inquilino/form";
+  private urlEndPointVer : string = "http://localhost:8081/inquilino/verInquilino";
+  private urlEndPointEliminar : string = "http://localhost:8081/inquilino/eliminar";
   
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
@@ -27,7 +27,7 @@ export class InquilinoService {
     
     return this.http.get(this.urlEndPointListar).pipe(
       map(response => {
-        let inquilinos = response as Inquilino[]
+        let inquilinos = response['inquilinos'] as Inquilino[]
 
         return inquilinos.map( inquilino => {
           inquilino.nombre = inquilino.nombre.toUpperCase();

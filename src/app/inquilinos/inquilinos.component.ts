@@ -22,6 +22,7 @@ export class InquilinosComponent implements OnInit {
   subscriptionUserInfo: Subscription;
   subscriptionActivities: Subscription;
   loading: boolean;
+  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'email', 'actions'];
 
   constructor(private inquilinoService: InquilinoService) { }
 

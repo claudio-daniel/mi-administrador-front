@@ -1,4 +1,4 @@
-<div class="card border-primary mb-3" >
+<div class="card border-primary mb-3 animated fadeIn fast" >
   <div class="card-header">Inquilinos</div>
   <div class="card-body text-primary">
     <h5 class="card-title">Inquilinos Registrados</h5>
@@ -10,33 +10,39 @@
       No hay inquilinos registrados 
     </div>
     
-    <table class=" thead-black table table-bordered table-striped" *ngIf="inquilinos?.length>0">
-      <thead>
-          <tr>
-              <th>id</th>
-              <th>nombre</th>
-              <th>apellido</th>
-              <th>email</th>
-              <th>fecha creación</th>
-              <th>editar</th>
-              <th>eliminar</th>
-            </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let i of inquilinos " >
-              <th>{{i.id}}</th>
-              <th>{{i.nombre}}</th>
-              <th>{{i.apellido}}</th>
-              <th>{{i.email}}</th>
-              <th>{{i.createAt | date:'EEEE dd, MMMM yyyy'}} </th>
-              <td>
-                <button type="button" name="editar" [routerLink]="['/inquilinos/form', i.id]" class="btn btn-primary btn-sm">editar</button>
-              </td>
-              <td>
-                <button type="button" name="eliminar" (click)='eliminar(i)' class="btn btn-danger btn-sm">eliminar</button>
-              </td>
-            </tr>
-      </tbody>
+    <table mat-table class=" thead-black table table-bordered table-striped" [dataSource]="inquilinos" *ngIf="inquilinos?.length>0">
+      
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+        <mat-cell *matCellDef="let inquilino"> {{inquilino.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef>nombre</mat-header-cell>
+        <mat-cell class="description-cell" *matCellDef="let inquilino">{{inquilino.nombre}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="apellido">
+        <mat-header-cell *matHeaderCellDef>apellido</mat-header-cell>
+        <mat-cell *matCellDef="let inquilino">{{inquilino.apellido}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>email</mat-header-cell>
+        <mat-cell class="description-cell" *matCellDef="let inquilino">{{inquilino.email}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell  *matHeaderCellDef > :) </mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+           <button mat-button type="button" style="margin-right: 25px; margin-left: 25px;" name="editar" [routerLink]="['/inquilinos/form', row.id]" class="btn btn-primary btn-sm">editar</button>
+           <button mat-button type="button" name="eliminar" (click)='eliminar(row)' class="btn btn-danger btn-sm">eliminar</button>
+        </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
     </table>
   </div>
 </div>

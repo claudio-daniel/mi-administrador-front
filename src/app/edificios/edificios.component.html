@@ -1,0 +1,20 @@
+<h2>MIS Edificios</h2>
+<ul class="heroes">
+  <li *ngFor="let edificio of edificios"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(edificio)">
+    <span class="badge">{{edificio.id}}</span> {{edificio.nombre}}
+  </li>
+</ul>
+
+<div *ngIf="selectedEdificio">
+
+  <h2>{{selectedEdificio.nombre | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedEdificio.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedEdificio.name" placeholder="name"/>
+    </label>
+  </div>
+
+</div>

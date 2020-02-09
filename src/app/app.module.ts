@@ -18,16 +18,18 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es-AR';
 import { DepartamentosComponent } from './departamentos/departamentos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EdificiosComponent } from './edificios/edificios.component';
 
 registerLocaleData(localeEs, 'es-AR');
 
-const routes : Routes = [
-  {path: '', redirectTo:'/inquilinos', pathMatch:'full'},
+const routes: Routes = [
+  {path: '', redirectTo: '/inquilinos', pathMatch: 'full'},
   {path: 'inquilinos', component : InquilinosComponent},
   {path: 'inquilinos/form', component : FormComponent},
   {path: 'inquilinos/form/:id', component : FormComponent},
   {path: 'departamentos', component : DepartamentosComponent},
-  {path: 'departamento/:id',component: DepartamentoComponent}
+  {path: 'departamento/:id', component: DepartamentoComponent},
+  {path: 'edificios', component: EdificiosComponent}
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const routes : Routes = [
     InquilinosComponent,
     FormComponent,
     DepartamentosComponent,
-    DepartamentoComponent
+    DepartamentoComponent,
+    EdificiosComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { InquilinoService } from './inquilino.service';
 import { Component, OnInit } from '@angular/core';
 import { Inquilino } from './inquilino';
 import swal from 'sweetalert2';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inquilinos',
@@ -13,24 +13,16 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class InquilinosComponent implements OnInit {
 
   inquilinos: Inquilino[];
-  CheckboxVar:boolean;
-  checked = false;
-  disabled = false;
-  userInfo$: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  userName$: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  view = 'Vista mensual';
-  subscriptionUserInfo: Subscription;
-  subscriptionActivities: Subscription;
-  loading: boolean;
+  inquilinoSelect: Inquilino;
   displayedColumns: string[] = ['id', 'nombre', 'apellido', 'email', 'actions'];
 
-  constructor(private inquilinoService: InquilinoService) { }
+  constructor(private inquilinoService: InquilinoService,
+              private route: Router) { }
 
   ngOnInit() {
     this.inquilinoService.getInquilinos().subscribe(
       inquilinos => this.inquilinos = inquilinos
     );
-    this.userName$.next("Claudio");
   }
 
   eliminar(inquilino: Inquilino) {
@@ -40,7 +32,7 @@ export class InquilinosComponent implements OnInit {
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
-    })
+    });
 
     swalWithBootstrapButtons.fire({
       title: '¿está seguro?',
@@ -54,14 +46,21 @@ export class InquilinosComponent implements OnInit {
       if (result.value) {
         this.inquilinos = this.inquilinos.filter(i => i !== inquilino);
         this.inquilinoService.eliminarCliente(inquilino.id).subscribe(
-          response => swalWithBootstrapButtons.fire('Inquilino eliminado!', `el inquilino ${inquilino.nombre} ${inquilino.apellido} ha sido eliminado!`,'success'
-        )
-        
-        )
+          response => swalWithBootstrapButtons.fire(
+            'Inquilino eliminado!',
+            `el inquilino ${inquilino.nombre} ${inquilino.apellido} ha sido eliminado!`,
+            'success')
+        );
       } else if (result.dismiss === swal.DismissReason.cancel) {
-        swalWithBootstrapButtons.fire('Cancelado', `el inquilino ${inquilino.nombre} ${inquilino.apellido} permanece registrado :)`, 'error'
-        )
-      }
-    })
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          `el inquilino ${inquilino.nombre} ${inquilino.apellido} permanece registrado :)`, 
+          'error');
+        }
+    });
+  }
+
+  onSelect(inquilino: Inquilino){
+    this.route.navigate(['/inquilinos/form', inquilino.id]);
   }
 }

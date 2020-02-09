@@ -15,7 +15,7 @@
 
 <div class="card-columns animated fadeIn">
     <div class="card border-info" style="width: 18rem;" *ngFor="let departamento of departamentos; let id=index" >
-        <div class="card-header text-white bg-info mb-3">{{ departamento.nombre }}</div>
+        <div class="card-header text-white bg-info mb-3">{{ departamento.edificio['nombre'] }}</div>
         <img *ngIf="imagen" src="..." class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ departamento.nombre }}</h5>

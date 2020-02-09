@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./departamentos.component.css']
 })
 export class DepartamentosComponent implements OnInit {
-  imagen : boolean = false;
-  departamentos : Departamento[] = [];
-  constructor(private departamentoService : DepartamentoService,
-              private route : Router) 
-              { }
+  imagen = false;
+  departamentos: Departamento[] = [];
+
+  constructor(private departamentoService: DepartamentoService,
+              private route: Router) { }
 
   ngOnInit() {
     this.departamentoService.getDepartamentos().subscribe(
@@ -22,7 +22,7 @@ export class DepartamentosComponent implements OnInit {
     );
   }
 
-  verMas(index : number){
+  verMas(index: number) {
     this.route.navigate(['/departamento', this.departamentos[index].id]);
   }
 }

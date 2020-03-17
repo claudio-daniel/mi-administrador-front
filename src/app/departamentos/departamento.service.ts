@@ -12,14 +12,13 @@ import { formatDate } from '@angular/common';
 })
 export class DepartamentoService {
 
-  private urlEndPoint : string = "http://localhost:8081/my_administration/departaments";
-  
+  private urlEndPoint = 'http://localhost:8081/my_administration/departaments';
+
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
   constructor(private http : HttpClient, private route : Router) { }
 
   getDepartamentos(): Observable<Departamento[]>{
-    
     return this.http.get(this.urlEndPoint).pipe(
       map(response => {
         let departamentos = response['departamentos'] as Departamento[]
@@ -28,7 +27,6 @@ export class DepartamentoService {
           departamento.nombre = departamento.nombre.toUpperCase();
           departamento.inquilino = departamento.inquilino != null ? departamento.inquilino['nombre'] : 'Disponible';
           departamento.propietario = departamento.propietario['nombre'];
-          
           return departamento;
         })
       })
@@ -48,7 +46,7 @@ export class DepartamentoService {
   //  );
   //}
 
-  getDepartamento(id : number): Observable<Departamento>{
+  getDepartamento(id: number): Observable<Departamento>{
     
     return this.http.get<Departamento>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e =>{
@@ -58,7 +56,26 @@ export class DepartamentoService {
         return throwError(e);
      })
     );
-}
+  }
+
+  buscarDepartamento(termino: string) {
+    let departamentos: Departamento[] 
+    //= this.getDepartamentos().subscribe(
+      //json => departamentos = json
+    //);
+    let departamentosArr: Departamento[] = [];
+    termino = termino.toLowerCase();
+
+    for(let departamento of departamentos ){
+      let nombre = departamento.nombre.toLowerCase();
+      if(nombre.indexOf( termino ) >= 0 ){
+        departamentosArr.push( departamento );
+      }
+    }
+
+    return departamentosArr;
+
+  }
 
 //  actualizarInquilino(inquilino : Inquilino): Observable<any>{
     
@@ -83,4 +100,6 @@ export class DepartamentoService {
 //      })
 //    );
 //  }
+
+
 }

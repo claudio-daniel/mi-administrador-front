@@ -6,7 +6,9 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms'
 
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from "@angular/material";
+import { MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTableModule } from '@angular/material';
+import { MatCardModule, MatInputModule} from '@angular/material';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,8 @@ import localeEs from '@angular/common/locales/es-AR';
 import { DepartamentosComponent } from './departamentos/departamentos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EdificiosComponent } from './edificios/edificios.component';
+import { DepartamentoCardComponent } from './departamentos/departamento-card/departamento-card.component';
+import { EdificioCardComponent } from './edificios/edificio-card/edificio-card.component';
 
 registerLocaleData(localeEs, 'es-AR');
 
@@ -41,7 +45,9 @@ const routes: Routes = [
     FormComponent,
     DepartamentosComponent,
     DepartamentoComponent,
-    EdificiosComponent
+    EdificiosComponent,
+    DepartamentoCardComponent,
+    EdificioCardComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,8 @@ const routes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [InquilinoService, {provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]

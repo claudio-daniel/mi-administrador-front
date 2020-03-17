@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  title:string = "Mi Administrador";
+  title: 'Mi Administrador';
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  buscar(terminoBusqueda: string){
+    console.log(terminoBusqueda);
+  }
 }

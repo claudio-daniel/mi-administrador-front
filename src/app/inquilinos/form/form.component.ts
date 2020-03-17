@@ -11,22 +11,25 @@ import swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
-  private inquilino : Inquilino = new Inquilino();
-  private titulo : string = "Crear Inquilino";
-  private errores : string[] = [];
-  constructor(private inquilinoService : InquilinoService, private route : Router, private activateRoute : ActivatedRoute) { }
+  private inquilino: Inquilino = new Inquilino();
+  private titulo: string ;
+  private errores: string[] = [];
+  constructor(private inquilinoService: InquilinoService, private route : Router, private activateRoute : ActivatedRoute) { }
 
   ngOnInit() {
     this.cargarInquilino();
   }
 
-  public cargarInquilino() : void{
+  public cargarInquilino(): void {
     this.activateRoute.params.subscribe( params => {
       let id = params[`id`];
-      if(id){
+      if (id) {
+        this.titulo = 'Editando Inquilin@'
         this.inquilinoService.getInquilino(id).subscribe ( (inquilino) => this.inquilino = inquilino)
+      } else{
+        this.titulo = 'Creando Inquilin@';
       }
-    })
+    });
 
   }
   public crear() : void {

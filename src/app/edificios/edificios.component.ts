@@ -10,6 +10,7 @@ import { Edificio } from './edificio';
 export class EdificiosComponent implements OnInit {
   edificios = EDIFICIOS;
   selectedEdificio: Edificio;
+  mostrarTarjeta = false;
 
   constructor() { }
 
@@ -18,6 +19,11 @@ export class EdificiosComponent implements OnInit {
 
   onSelect(edificio: Edificio): void {
     this.selectedEdificio = edificio;
+  }
+
+  ocultarCardEdificio(mostrar: boolean) {
+    this.selectedEdificio = null;
+    this.mostrarTarjeta = mostrar;
   }
 }
 

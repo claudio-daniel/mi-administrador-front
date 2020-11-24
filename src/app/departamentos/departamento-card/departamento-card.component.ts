@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class DepartamentoCardComponent implements OnInit {
 
   @Input() departamento: any = {};
+  public imagen: false;
 
   constructor( private router: Router) { }
 

@@ -11,9 +11,9 @@ import swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
-  private inquilino: Inquilino = new Inquilino();
-  private titulo: string ;
-  private errores: string[] = [];
+  public inquilino: Inquilino = new Inquilino();
+  public titulo: string ;
+  public errores: string[] = [];
   constructor(private inquilinoService: InquilinoService, private route : Router, private activateRoute : ActivatedRoute) { }
 
   ngOnInit() {

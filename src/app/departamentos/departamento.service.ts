@@ -11,8 +11,9 @@ import { formatDate } from '@angular/common';
   providedIn: 'root'
 })
 export class DepartamentoService {
+  private baseUrl = 'https://mi-administrador-api-rest.herokuapp.com/';
 
-  private urlEndPoint = 'http://localhost:8081/my_administration/departaments';
+  private urlEndPoint = this.baseUrl + 'departaments';
 
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 

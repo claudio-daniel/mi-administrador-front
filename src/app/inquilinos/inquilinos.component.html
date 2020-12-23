@@ -10,7 +10,9 @@
       No hay inquilinos registrados 
     </div>
     
-    <table mat-table class=" thead-black table table-bordered table-striped" [dataSource]="inquilinos" *ngIf="inquilinos?.length>0">
+    <div class='table-responsive mat-elevation-z8'>
+
+    <mat-table class=" thead-black table table-bordered table-striped example-container" [dataSource]="inquilinos" *ngIf="inquilinos?.length>0">
       
       <ng-container matColumnDef="id" [class.selected]="hero === selectedHero">
         <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
@@ -43,7 +45,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-    </table>
+    </mat-table></div>
   </div>
 </div>
 

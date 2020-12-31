@@ -1,4 +1,4 @@
-import { InquilinoService } from './inquilino.service';
+import { InquilinoService } from '../shared/service/inquilino.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Inquilino } from './inquilino';
@@ -14,10 +14,10 @@ export class InquilinosComponent implements OnInit {
 
   inquilinos: Inquilino[];
   inquilinoSelect: Inquilino;
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'email', 'actions'];
+  displayedColumns: string[] = ['nombre', 'apellido', 'email', 'id', 'actions'];
 
   constructor(private inquilinoService: InquilinoService,
-              private route: Router) { }
+    private route: Router) { }
 
   ngOnInit() {
     this.inquilinoService.getInquilinos().subscribe(
@@ -36,7 +36,7 @@ export class InquilinosComponent implements OnInit {
 
     swalWithBootstrapButtons.fire({
       title: '¿está seguro?',
-      text: `se eliminaran los datos del inquilino ${inquilino.nombre} ${inquilino.apellido}!` ,
+      text: `se eliminaran los datos del plan ${inquilino.nombre} ${inquilino.apellido}!`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar!',
@@ -47,20 +47,20 @@ export class InquilinosComponent implements OnInit {
         this.inquilinos = this.inquilinos.filter(i => i !== inquilino);
         this.inquilinoService.eliminarCliente(inquilino.id).subscribe(
           response => swalWithBootstrapButtons.fire(
-            'Inquilino eliminado!',
-            `el inquilino ${inquilino.nombre} ${inquilino.apellido} ha sido eliminado!`,
+            'Plan de Mantenimiento eliminado!',
+            `el plan ${inquilino.nombre} ${inquilino.apellido} ha sido eliminado!`,
             'success')
         );
       } else if (result.dismiss === swal.DismissReason.cancel) {
         swalWithBootstrapButtons.fire(
           'Cancelado',
-          `el inquilino ${inquilino.nombre} ${inquilino.apellido} permanece registrado :)`, 
+          `el plan ${inquilino.nombre} ${inquilino.apellido} permanece registrado :)`,
           'error');
-        }
+      }
     });
   }
 
-  onSelect(inquilino: Inquilino){
+  onSelect(inquilino: Inquilino) {
     this.route.navigate(['/inquilinos/form', inquilino.id]);
   }
 }

@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { InquilinoService } from './inquilinos/inquilino.service';
+import { InquilinoService } from './shared/service/inquilino.service';
 import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -12,7 +12,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,7 +68,11 @@ const routes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatRippleModule,
+    MatIconModule
   ],
   providers: [InquilinoService, { provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]

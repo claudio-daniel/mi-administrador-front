@@ -1,46 +1,50 @@
 
   <!-- Page Content -->
-  <div class="container animated fadeIn fast">
+  <div *ngIf="departamento" class="container animated fadeIn fast">
 
     <div class="row">
 
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
-        <h1 class="my-4">{{ departamento.nombre | uppercase}}
+        <h1 *ngIf="departamento.edificio"class="my-4">{{ departamento.nombre | uppercase}}
           <small>de {{ departamento.edificio['nombre'] }}</small>
         </h1>
 
         <!-- Blog Post -->
         <div class="card mb-4">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <img class="card-img bd-placeholder-img rounded animated fadeIn fast" width="111" height="405"
+          alt="Responsive image" src="../../../assets/img/camion.jpg">
           <div class="card-body">
-            <h2 class="card-title">Propietario : {{ departamento.propietario['nombre']}}</h2>
-            <p class="card-text">Detalle del propietario</p>
-            <a href="#" class="btn btn-primary">Ver Propietario &rarr;</a>
+            <h2 class="card-title">Detalle del vehiculo</h2>
+            <p class="card-text">Tipo : {{ departamento.tipo}}</p>
+            <p class="card-text">Marca : {{ departamento.marca}}</p>
+            <p class="card-text">Patente : {{ departamento.patente}}</p>
+            <p class="card-text">Caballos de Fuerza : {{ departamento.caballosFuerza}}</p>
+
+            <a href="#" class="btn btn-primary">editar &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+            Actualizado el {{ departamento.fecha}}
           </div>
         </div>
 
         <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+        <div *ngIf="departamento.inquilino" class="card mb-4">
+           <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
           <div class="card-body">
-            <h2 class="card-title">Inquilino : {{ departamento.inquilino['nombre'] }}</h2>
-            <p class="card-text">Detalle del inquilino</p>
-            <button mat-button type="button" style="margin-right: 25px; margin-left: 25px;" name="editar" [routerLink]="['/inquilinos/', inquilinoId]" class="btn btn-primary btn-sm">ver inquilino</button>
+            <h2 class="card-title">Plan de Mantenimiento : {{ departamento.inquilino['nombre'] }}</h2>
+            <h5 class="card-text">Detalle del Plan</h5>
+            <p class="card-text">Estado : {{ departamento.estado }}</p>
+            <button mat-button type="button" style="margin-right: 25px; margin-left: 25px;" name="editar" [routerLink]="['/inquilinos/form/', departamento.inquilino['id']]" class="btn btn-primary btn-sm">editar plan</button>
         </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+            Proximo Mantenimiento {{ departamento.inquilino['fecha'] }}
           </div>
         </div>
 
         <!-- Blog Post -->
-        <div class="card mb-4">
+        <!--<div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Expensas</h2>
@@ -53,7 +57,7 @@
             Posted on January 1, 2017 by
             <a href="#">Start Bootstrap</a>
           </div>
-        </div>
+        </div> -->
 
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">

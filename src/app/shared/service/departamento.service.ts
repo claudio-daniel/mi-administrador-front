@@ -1,11 +1,10 @@
-import { Departamento } from './departamento';
+import { Departamento } from '../../departamentos/departamento';
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { of, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ import { formatDate } from '@angular/common';
 export class DepartamentoService {
   private baseUrl = 'https://mi-administrador-api-rest.herokuapp.com/';
 
-  private urlEndPoint = this.baseUrl + 'departaments';
+  private urlEndPoint = this.baseUrl + '/departaments';
 
   private httpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
 
@@ -22,7 +21,7 @@ export class DepartamentoService {
   getDepartamentos(): Observable<Departamento[]>{
     return this.http.get(this.urlEndPoint).pipe(
       map(response => {
-        let departamentos = response['departamentos'] as Departamento[]
+        const departamentos = response['departamentos'] as Departamento[]
 
         return departamentos.map( departamento => {
           departamento.nombre = departamento.nombre.toUpperCase();

@@ -1,4 +1,4 @@
-import { Inquilino } from './inquilino';
+import { Inquilino } from '../../inquilinos/inquilino';
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { of, Observable, throwError } from 'rxjs';
@@ -23,7 +23,7 @@ export class InquilinoService {
 
   getInquilinos(): Observable<Inquilino[]> {
 
-    return this.http.get(this.urlEndPointListar).pipe(
+    return this.http.get(`${this.urlEndPointListar}`).pipe(
       map(response => {
         let inquilinos = response['inquilinos'] as Inquilino[]
 
@@ -54,12 +54,12 @@ export class InquilinoService {
     return this.http.get<Inquilino>(`${this.urlEndPointVer}/${id}`).pipe(
       catchError(e => {
         this.route.navigate(['/inquilinos']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
+        //console.error(e.error.mensaje);
+        //swal.fire('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
-  }
+  } 
 
   actualizarInquilino(inquilino: Inquilino): Observable<any> {
 

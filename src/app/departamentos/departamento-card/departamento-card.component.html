@@ -1,17 +1,30 @@
 <div class="card border-info" style="width: 18rem;">
-    <div class="card-header text-white bg-info mb-3">{{ departamento.edificio['nombre'] }}</div>
+    <div class="card-header text-white bg-info mb-3">{{ departamento.tipo }}</div>
     <img *ngIf="imagen" src="..." class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">{{ departamento.nombre }}</h5>
-        <p class="card-text">{{ departamento.estado }}</p>
+        <p class="card-text">Marca : {{ departamento.marca }}</p>
+        <p class="card-text">Modelo: {{ departamento.modelo }}</p>
     </div>
+
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Inquilino : {{ departamento.inquilino }}</li>
-        <li class="list-group-item">Propietario : {{ departamento.propietario }}</li>
-        <li class="list-group-item">Cantidad de Habitaciones : {{ departamento.cantidadHabitaciones }}</li>
+        <li class="list-group-item">Prox. Mantenimiento : {{ departamento.inquilino }}</li>
+        <li class="list-group-item">
+            <p class="card-text">{{ departamento.estado }}</p>
+            <div *ngIf="departamento.estado=='Alquilado'" type="button" class="btn btn-success img-fluid card-img-circle bd-placeholder-img rounded-circle">
+                <mat-icon>done </mat-icon>
+            </div>
+            <div *ngIf="departamento.estado=='Inactivo'" type="button" class="btn btn-danger img-fluid card-img-circle bd-placeholder-img rounded-circle">
+                <mat-icon>clear</mat-icon>
+            </div>
+            <div *ngIf="departamento.estado=='Disponible'" type="button" class="btn btn-warning img-fluid card-img-circle bd-placeholder-img rounded-circle">
+                <mat-icon>flash_on</mat-icon>
+            </div>
+        </li>
     </ul>
     <div class="card-body">
-        <button type="button" class="btn btn-outline-primary btn-block" (click)="verMas(departamento.id)">Ver mas..</button>
+        <button type="button" class="btn btn-outline-primary btn-block" (click)="verMas(departamento.id)">Ver
+            mas..</button>
         <button type="button" class="btn btn-outline-danger btn-block">Eliminar</button>
     </div>
 </div>

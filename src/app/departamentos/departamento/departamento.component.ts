@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DepartamentoService } from '../departamento.service';
+import { DepartamentoService } from '../../shared/service/departamento.service';
 
 @Component({
   selector: 'app-form',
@@ -12,11 +12,14 @@ export class DepartamentoComponent implements OnInit {
   departamento: any = {};
   inquilinoId: number;
 
-  constructor( private activatedRoute: ActivatedRoute,
-               private departamentoService: DepartamentoService ) {
+  constructor(private activatedRoute: ActivatedRoute,
+    private departamentoService: DepartamentoService) {
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
-      this.departamentoService.getDepartamento(id).subscribe ( (departamento) => this.departamento = departamento);
+      this.departamentoService.getDepartamento(id).subscribe((departamento) => {
+        this.departamento = departamento; 
+        console.log(this.departamento)
+      });
     });
   }
 

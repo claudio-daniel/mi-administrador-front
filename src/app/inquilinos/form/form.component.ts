@@ -1,4 +1,4 @@
-import { InquilinoService } from './../inquilino.service';
+import { InquilinoService } from '../../shared/service/inquilino.service';
 import { Inquilino } from './../inquilino';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,11 +23,12 @@ export class FormComponent implements OnInit {
   public cargarInquilino(): void {
     this.activateRoute.params.subscribe( params => {
       let id = params[`id`];
-      if (id) {
-        this.titulo = 'Editando Inquilin@'
+      if (id) { 
+        this.titulo = 'Editando Plan de Mantenimiento'
+
         this.inquilinoService.getInquilino(id).subscribe ( (inquilino) => this.inquilino = inquilino)
       } else{
-        this.titulo = 'Creando Inquilin@';
+        this.titulo = 'Creando Plan de Mantenimiento';
       }
     });
 
@@ -36,8 +37,9 @@ export class FormComponent implements OnInit {
     this.inquilinoService.crearInquilino(this.inquilino).subscribe(
       json => {
 
+        console.log(json)
         this.route.navigate(['/inquilinos']);
-        swal.fire('Inquilino Registrado', `inquilino ${json.inquilino.nombre} creado con éxito`, 'success')
+        swal.fire('Plan de Mantenimiento Registrado', `plan ${json.inquilino.nombre} creado con éxito`, 'success')
       },
       err =>{
         this.errores = err.error.errors as string[];
@@ -50,8 +52,10 @@ export class FormComponent implements OnInit {
   public actualizar() : void {
     this.inquilinoService.actualizarInquilino(this.inquilino).subscribe(
       json=> {
+        console.log(json)
+
         this.route.navigate(['/inquilinos']);
-        swal.fire('Inquilino Actualizado', `inquilino ${json.inquilino.nombre} actualizado con exito`, 'success')
+        swal.fire('Plan de Mantenimiento Actualizado', `plan ${json.inquilino.nombre} actualizado con exito`, 'success')
       },
       err =>{
         this.errores = err.error.errors as string[];

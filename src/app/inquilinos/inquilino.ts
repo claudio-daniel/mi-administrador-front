@@ -4,4 +4,5 @@ export class Inquilino {
     apellido:string;
     email:string;
     createAt:string;
+    tipo:string;
 }

@@ -11,13 +11,13 @@
         <li class="list-group-item">Prox. Mantenimiento : {{ departamento.inquilino }}</li>
         <li class="list-group-item">
             <p class="card-text">{{ departamento.estado }}</p>
-            <div *ngIf="departamento.estado=='Alquilado'" type="button" class="btn btn-success img-fluid card-img-circle bd-placeholder-img rounded-circle">
+            <div *ngIf="departamento.estado=='Correcto'" type="button" class="btn btn-success img-fluid card-img-circle bd-placeholder-img rounded-circle">
                 <mat-icon>done </mat-icon>
             </div>
-            <div *ngIf="departamento.estado=='Inactivo'" type="button" class="btn btn-danger img-fluid card-img-circle bd-placeholder-img rounded-circle">
+            <div *ngIf="departamento.estado=='Vencido'" type="button" class="btn btn-danger img-fluid card-img-circle bd-placeholder-img rounded-circle">
                 <mat-icon>clear</mat-icon>
             </div>
-            <div *ngIf="departamento.estado=='Disponible'" type="button" class="btn btn-warning img-fluid card-img-circle bd-placeholder-img rounded-circle">
+            <div *ngIf="departamento.estado=='Por Vencer'" type="button" class="btn btn-warning img-fluid card-img-circle bd-placeholder-img rounded-circle">
                 <mat-icon>flash_on</mat-icon>
             </div>
         </li>
